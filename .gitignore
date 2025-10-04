@@ -1,0 +1,32 @@
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build output
+build/
+dist/
+out/
+bin/
+obj/
+
+# Dependency directories
+node_modules/
+venv/
+__pycache__/
+
+# Log files
+*.log
+
+# Environment files
+.env
+
+# Others
+*.bak
+*.tmp
+apks/*
+!apks/.gitkeep

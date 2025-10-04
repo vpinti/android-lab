@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  android-lab:
+    build: .
+    container_name: android-lab
+    user: "${UID}:${GID}"
+    ports:
+      - "5900:5900"   # Porta VNC
+    environment:
+      - HOST_UID=${UID}
+      - HOST_GID=${GID}
+    volumes:
+      - ./apks:/opt/android-lab/apks
+    tty: true
+
