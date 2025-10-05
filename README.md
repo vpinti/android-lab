@@ -37,6 +37,32 @@ Per accedere all'ambiente grafico (necessario per strumenti come JD-GUI o Byteco
    - **Porta:** `5900`
    - **Password:** (di default nessuna, modificabile in `entrypoint.sh`)
 
+## Configurazione dei permessi sulle cartelle APK
+
+Per evitare problemi di permessi sulle cartelle montate (`apks`), è necessario:
+
+1. Copiare il file `.env.example` e rinominarlo in `.env`:
+   ```zsh
+   cp .env.example .env
+   ```
+2. Modificare il file `.env` impostando le variabili `UID` e `GID` con il tuo user ID e group ID locali. Puoi recuperarli con:
+   ```zsh
+   echo $UID
+   echo $GID
+   ```
+   oppure:
+   ```zsh
+   id -u
+   id -g
+   ```
+3. Inserisci i valori ottenuti in `.env`:
+   ```env
+   UID=tuo_uid
+   GID=tuo_gid
+   ```
+
+Questo garantisce che il container abbia i privilegi corretti per leggere e scrivere nella cartella `apks` montata.
+
 ## Esempi di utilizzo di apktool
 
 ### Decodifica di un APK
@@ -60,6 +86,26 @@ Questo comando ricompila la cartella modificata in un nuovo APK.
   ```zsh
   apktool --help
   ```
+
+## Guida a Bytecode Viewer
+
+Bytecode Viewer è uno strumento avanzato per l'analisi di bytecode Java e Android. Puoi utilizzarlo tramite l'ambiente grafico Fluxbox già presente nel container.
+
+### Come avviare Bytecode Viewer
+
+1. Avvia il container e connettiti tramite VNC come descritto sopra.
+2. All'interno dell'ambiente grafico (Fluxbox), apri un terminale.
+3. Digita il comando:
+   ```zsh
+   java -jar /opt/bytecode-viewer.jar
+   ```
+4. Si aprirà la GUI di Bytecode Viewer, dove potrai caricare e analizzare file `.dex`, `.jar` o `.class`.
+
+### Funzionalità principali
+- Carica file tramite il menu "Open".
+- Visualizza bytecode, codice Java decompilato e Smali.
+- Analizza APK estratti con apktool o file dex convertiti con dex2jar.
+- Usa le funzioni di ricerca e navigazione per esplorare le classi e i metodi.
 
 ## Note
 - Per analisi avanzate, puoi usare dex2jar e JD-GUI:

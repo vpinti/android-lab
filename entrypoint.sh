@@ -13,7 +13,7 @@ fi
 chown -R hostuser:hostuser /opt/android-lab/apks
 
 # Avvia X virtual framebuffer
-Xvfb :1 -screen 0 1024x768x16 &
+Xvfb :1 -screen 0 1920x1080x16 &
 export DISPLAY=:1
 
 # Avvia Fluxbox

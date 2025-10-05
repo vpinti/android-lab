@@ -18,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     xvfb \
     x11vnc \
     fluxbox \
+    xterm \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Installazione apktool
